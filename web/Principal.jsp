@@ -9,12 +9,11 @@
         <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <script src="https://kit.fontawesome.com/84b9b0e690.js" crossorigin="anonymous"></script>
-    </svg>
         <title>Oxxo Perú</title>
     </head>
     <body>
         <div class="card">
-            <img src="assets/img/banner.jpg" alt=""/>
+            <img src="assets/img/oxxo_banner.jpg" alt=""/>
             <div class="card-img-overlay">
                 <img src="assets/img/oxxo.png" alt="40" width="100/>
                      <p class="card-text"><h4><i class="fas fa-angle-right"></i> Sistema integrado de administración</h4></p>
@@ -27,7 +26,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a style="margin-left: 10px; border: none" class="btn btn-outline-light active" href="Controlador?menu=Home" target="myFrame"><i class="fas fa-home"></i> Inicio</a>
+                        <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Controlador?menu=Home" target="myFrame"><i class="fas fa-home"></i> Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Controlador?menu=Producto" target="myFrame"><i class="fas fa-box-open"></i> Producto</a>
