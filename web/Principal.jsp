@@ -26,19 +26,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Controlador?menu=Home" target="myFrame"><i class="fas fa-home"></i> Inicio</a>
+                        <a id="home" style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Controlador?menu=Home" target="myFrame"><i class="fas fa-home"></i> Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Controlador?menu=Producto" target="myFrame"><i class="fas fa-box-open"></i> Producto</a>
+                        <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Controlador?menu=Producto&accion=Listar" target="myFrame"><i class="fas fa-box-open"></i> Producto</a>
                     </li>
                     <li class="nav-item">
                         <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Controlador?menu=Empleado&accion=Listar" target="myFrame"><i class="fas fa-user"></i> Colaborador</a>
                     </li>
                     <li class="nav-item">
-                        <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Controlador?menu=Clientes" target="myFrame"><i class="fas fa-users"></i> Clientes</a>
+                        <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Controlador?menu=Cliente&accion=Listar" target="myFrame"><i class="fas fa-users"></i> Clientes</a>
                     </li>
                     <li class="nav-item">
-                        <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Controlador?menu=NuevaVenta" target="myFrame"><i class="fas fa-hand-holding-usd"></i> Nueva venta</a>
+                        <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Controlador?menu=NuevaVenta&accion=default" target="myFrame"><i class="fas fa-hand-holding-usd"></i> Nueva venta</a>
                     </li>
                 </ul>
             </div>
@@ -58,9 +58,12 @@
                 </div>
             </div>
         </nav>
-                    <div class="m-4" style="height: 720px">
-                        <iframe name="myFrame" style="height: 100%; width: 100%; border: none"></iframe>
-                    </div>
+        <div style="height: 769px">
+            <iframe name="myFrame" style="height: 100%; width: 100%; border: none;"></iframe>
+        </div>
+                    <script>
+                        document.getElementById("home").click();
+                    </script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
