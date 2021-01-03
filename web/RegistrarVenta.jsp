@@ -14,12 +14,18 @@
         <title>Registro de Ventas</title>
         <style>
             @media print{
-                
+                .parte01, .btn, .accion{
+                    display: none;
+                }
+                .parte02{
+                    display: none;
+                }
             }
         </style>
     </head>
     <body>
         <div style="padding: 15px">
+            <div class="parte01">
             <h1 class="display-5">Módulo de ventas <i class="fas fa-hand-holding-usd"></i></h1>
             <p class="lead">Aquí puedes realizar las ventas del día</p>
             <!-- Button que levanta el modal -->
@@ -76,8 +82,12 @@
                 </div>
             </div>
             <hr class="my-3">
+            </div>
+            <div class="collapse">
+                <img class="parte03" src="assets/img/finish.jpg" alt="" width="300"/>
+            </div>
             <div class="d-flex">
-                <div class="col-sm-4">
+                <div class="col-sm-4 parte02">
                     <div class="card">
                         <form action="Controlador?menu=NuevaVenta" method="POST">
                             <div class="card-body">
@@ -90,7 +100,7 @@
                                         &nbsp;<button type="submit" name="accion" value="BuscarCliente" class="btn btn-info"><i class="fas fa-search"></i></button>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" value="${c.getNom()}" name="nombrescliente" class="form-control" placeholder="Datos del cliente">
+                                        <input type="text" value="${c.getNom()}" name="nombrescliente" class="form-control" placeholder="Datos del cliente" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -102,23 +112,23 @@
                                         &nbsp;<button type="submit" name="accion" value="BuscarProducto" class="btn btn-info"><i class="fas fa-search"></i></button>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text"  name="nombreproducto" value="${producto.getNom()}" class="form-control" placeholder="Datos del producto">
+                                        <input type="text"  name="nombreproducto" value="${producto.getNom()}" class="form-control" placeholder="Datos del producto" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group d-flex">
                                     <div class="col-sm-6 d-flex">
-                                        <input type="text"  name="precio" value="${producto.getPrecio()}" class="form-control" placeholder="S/. 0.00">
+                                        <input type="text"  name="precio" value="${producto.getPrecio()}" class="form-control" placeholder="S/. 0.00" readonly>
                                     </div>
                                     <div class="col-sm-3">
                                         <input type="number" value="1" name="cant" class="form-control">
                                     </div>
                                     <div class="col-sm-3">
-                                        <input type="text" value="${producto.getStock()}" name="stock" class="form-control">
+                                        <input type="text" value="${producto.getStock()}" name="stock" class="form-control" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group d-flex">
                                     <div class="col-sm-6 d-flex">
-                                        <button type="submit" name="accion" value="Agregar" class="btn btn-info"><i class="fas fa-check-circle"></i> Agregar al carrito</button>
+                                        <button type="submit" name="accion" value="Agregar" class="btn btn-info"><i class="fas fa-cart-plus"></i> Agregar a la lista</button>
                                     </div>
                                 </div>
                             </div>
@@ -154,8 +164,7 @@
                                             <td>${list.getCantidad()}</td>
                                             <td>${list.getSubtotal()}</td>
                                             <td>
-                                                <a class="btn btn-warning" href="Controlador?menu=Producto&accion=Editar&id=${pr.getId()}"><i class="fas fa-edit"></i> Editar</a>
-                                                <a class="btn btn-danger" href="Controlador?menu=Producto&accion=Eliminar&id=${pr.getId()}"><i class="fas fa-trash-alt"></i> Eliminar</a>                                             
+                                                <a class="btn btn-danger" href="Controlador?menu=Producto&accion=Eliminar&id=${list.getItem()}"><i class="fas fa-cart-arrow-down"></i> Eliminar Item</a>                                             
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -164,11 +173,12 @@
                         </div>
                         <div class="card-footer d-flex">
                             <div class="col-sm-6">
-                                <a href="Controlador?menu=NuevaVenta&accion=GenerarVenta" class="btn btn-success"><i class="fas fa-money-check-alt"></i> Generar venta</a>
-                                <a type="submit" name="accion" value="Cancelar" class="btn btn-danger"><i class="fas fa-ban"></i> Cancelar</a>
+                                <a href="Controlador?menu=NuevaVenta&accion=GenerarVenta" onclick="print()" class="btn btn-success"><i class="fas fa-cash-register"></i> Generar venta</a>
+                                <a href="Controlador?menu=NuevaVenta&accion=GenerarVenta&accion=Cancelar" type="submit" name="accion" value="Cancelar" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Vaciar lista</a>
                             </div>
-                            <div class="col-sm-3 ml-auto">
-                                <input type="text" name="txtTotal" value="S/. ${totalpagar}0" class="form-control">
+                            <div class="col-sm-6 ml-auto d-flex">
+                                <label><h3>Total: </h3></label>
+                                &nbsp;<input type="text" name="txtTotal" value="S/. ${totalpagar}0" class="form-control">
                             </div>
                         </div>
                     </div>

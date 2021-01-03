@@ -56,7 +56,9 @@ public class Controlador extends HttpServlet {
     double subtotal;
     double totalPagar;
     String numeroserie;
+    String numSerieLuegoVenta;
     VentaDAO vdao = new VentaDAO();
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         String menu = request.getParameter("menu");
@@ -219,6 +221,7 @@ public class Controlador extends HttpServlet {
                     cl.setDni(dni);
                     cl = cdao.buscar(dni);
                     request.setAttribute("c", cl);
+                    request.setAttribute("nserie", numeroserie);
                     break;
                 case "BuscarProducto":
                     int id = Integer.parseInt(request.getParameter("codigoproducto"));
@@ -255,12 +258,12 @@ public class Controlador extends HttpServlet {
                     break;
                 case "GenerarVenta":
                     for (int i = 0; i < lista.size(); i++) {
-                        //Producto p = new Producto();
                         int cantidad = lista.get(i).getCantidad();
                         int idproducto = lista.get(i).getIdproducto();
                         ProductoDAO aO = new ProductoDAO();
-                        pr = aO.buscar(idproducto);
-                        int sac = pr.getStock() - cantidad;
+                        pr = aO.listarId(idproducto);
+                        int stock = pr.getStock();
+                        int sac =  stock - cantidad;
                         aO.actualizarstock(idproducto, sac);
                      }
                     
@@ -280,6 +283,15 @@ public class Controlador extends HttpServlet {
                         v.setPrecio(lista.get(i).getPrecio());
                         vdao.guardarDetalleventas(v);
                     }
+                    lista.clear();
+                    item = 0;
+                    break;
+                case "Cancelar":
+                    lista.clear();
+                    item = 0;
+                    break;
+                case "Eliminar":
+                    
                     break;
                 default:
                     numeroserie = vdao.GenerarSerie();
@@ -295,6 +307,17 @@ public class Controlador extends HttpServlet {
                     request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
                     break;
             }
+            numSerieLuegoVenta = vdao.GenerarSerie();
+            if (numSerieLuegoVenta == null) {
+                numSerieLuegoVenta = "00000001";
+                request.setAttribute("nserie", numeroserie);
+            } else {
+                int incrementar = Integer.parseInt(numSerieLuegoVenta);
+                GenerarSerie gs = new GenerarSerie();
+                numSerieLuegoVenta = gs.NumeroSerie(incrementar);
+                request.setAttribute("nserie", numSerieLuegoVenta);
+            }
+            request.setAttribute("nserie", numSerieLuegoVenta);
             request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
         }
     }
